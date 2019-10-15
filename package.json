@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://andrroy.github.io/sandberg",
   "scripts": {
+    "build": "elm make src/Main.elm --optimize --output=build/assets/main.js && cp src/index.html build/index.html",
     "format": "elm-format . --yes"
   },
   "devDependencies": {
