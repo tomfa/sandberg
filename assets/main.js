@@ -4996,7 +4996,7 @@ var author$project$Main$view = function (model) {
 		elm$html$Html$div,
 		_List_fromArray(
 			[
-				A2(elm$html$Html$Attributes$style, 'color', 'green')
+				A2(elm$html$Html$Attributes$style, 'color', 'blue')
 			]),
 		_List_fromArray(
 			[
