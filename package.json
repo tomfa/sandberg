@@ -5,10 +5,13 @@
   "homepage": "https://andrroy.github.io/sandberg",
   "scripts": {
     "build": "elm make src/Main.elm --optimize --output=build/assets/main.js && cp src/index.html build/index.html",
-    "format": "elm-format . --yes"
+    "format": "elm-format . --yes",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "elm": "^0.19.0-no-deps",
-    "elm-format": "^0.8.2"
+    "elm-format": "^0.8.2",
+    "gh-pages": "^2.1.1"
   }
 }
