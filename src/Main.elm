@@ -1,8 +1,7 @@
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onInput)
-
+import Html.Events exposing (onInput, onClick)
 
 
 -- MAIN
@@ -17,15 +16,16 @@ main =
 
 
 type alias Model =
-  { name : String
-  , password : String
-  , passwordAgain : String
+  { fanName : String
+  , subject : String
+  , text : String
+  , submitted : Bool
   }
 
 
 init : Model
 init =
-  Model "" "" ""
+  Model "" "" "" False
 
 
 
@@ -33,22 +33,26 @@ init =
 
 
 type Msg
-  = Name String
-  | Password String
-  | PasswordAgain String
+  = FanName String
+  | Subject String
+  | Text String
+  | SandbergSummonClicked
 
 
 update : Msg -> Model -> Model
 update msg model =
   case msg of
-    Name name ->
-      { model | name = name }
+    FanName fanName ->
+      { model | fanName = fanName }
 
-    Password password ->
-      { model | password = password }
+    Subject subject ->
+      { model | subject = subject }
 
-    PasswordAgain password ->
-      { model | passwordAgain = password }
+    Text text ->
+      { model | text = text }
+
+    SandbergSummonClicked ->
+      { model | submitted = True }
 
 
 
@@ -57,13 +61,16 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-  div []
-    [ viewInput "text" "Name" model.name Name
-    , viewInput "password" "Password" model.password Password
-    , viewInput "password" "Re-enter Password" model.passwordAgain PasswordAgain
-    , viewValidation model
-    , button [ style "color" "red" ] [ text "Sandberg" ]
-    ]
+  if model.submitted then
+    div [ style "color" "green" ] [ text "ANDREAS VAR HER" ]
+  else  
+    div []
+      [ viewInput "text" "FanName" model.fanName FanName
+      , viewInput "text" "Subject" model.subject Subject
+      , viewInput "text" "Text" model.text Text
+      , textarea [ cols 40, rows 10, placeholder "Kjære Sandberg.." ] []
+      , button [onClick SandbergSummonClicked ] [ text "Summon Sandberg" ]
+      ]
 
 
 viewInput : String -> String -> String -> (String -> msg) -> Html msg
@@ -73,8 +80,4 @@ viewInput t p v toMsg =
 
 viewValidation : Model -> Html msg
 viewValidation model =
-  if model.password == model.passwordAgain then
-    div [ style "color" "green" ] [ text "OK" ]
-  else
-    div [ style "color" "red" ] [ text "Passwords do not match!" ]
-    
+  div [ style "color" "green" ] [ text "OK" ]
