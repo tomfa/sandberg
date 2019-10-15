@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://andrroy.github.io/sandberg",
   "scripts": {
-    "build": "elm make src/Main.elm --optimize --output=build/assets/main.js && cp src/index.html build/index.html",
+    "build": "cp src/index.html build/index.html && cp -r src/assets/. build/assets/ && elm make src/Main.elm --optimize --output=build/assets/main.js",
     "format": "elm-format . --yes",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
