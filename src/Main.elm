@@ -62,6 +62,7 @@ view model =
     , viewInput "password" "Password" model.password Password
     , viewInput "password" "Re-enter Password" model.passwordAgain PasswordAgain
     , viewValidation model
+    , button [ style "color" "red" ] [ text "Sandberg" ]
     ]
 
 
