@@ -62,7 +62,7 @@ update msg model =
 view : Model -> Html Msg
 view model =
   if model.submitted then
-    div [ style "color" "green" ] [ text "ANDREAS VAR HER" ]
+    div [ style "color" "blue" ] [ text "ANDREAS VAR HER" ]
   else  
     div []
       [ viewInput "text" "FanName" model.fanName FanName
